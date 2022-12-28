@@ -50,6 +50,7 @@ def add_student(request):
             student.dateofbirth = request.POST.get('dateofbirth')
             student.gender = request.POST.get('gender')
             student.grade = request.POST.get('grade')
+            student.note = request.POST.get('note')
             student.save()
             messages.success(request, "Student added successfully !!!")
             return HttpResponseRedirect('/backend')

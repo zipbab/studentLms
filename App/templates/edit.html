@@ -33,7 +33,7 @@
 {% block option2 %} <option style="background-color:#d3d3d3; color: #007bff; font-weight: bold;">{{ student.grade }}</option> {% endblock option2 %}
 {% block Value-grade %}  value="{{ student.grade }}"  {% endblock Value-grade %}
 
-{% block Value-note %} {{ student.note }} {% endblock Value-note %} 
+{% block Value-note %}{{ student.note }}{% endblock Value-note %} 
 
  <!-- Input ID passed here -->
  {% block Id-hidden %} <input type="hidden" name="id" value="{{ student.id }}">  {% endblock Id-hidden %}
