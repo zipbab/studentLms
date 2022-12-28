@@ -21,7 +21,7 @@
         <header>
             <nav class="navbar navbar-expand-ld navbar-dark bg-dark">
                 <div class="col-sm"> 
-                    <a class="navbar-brand flex-grow-1" style="text-align: center; color: #fff; margin-left: 25px;">
+                    <a class="navbar-brand flex-grow-1" id="nav-content" style="text-align: center; color: #fff; margin-left: 25px;">
                         {% block navbar-content %}
                         <i class="fas fa-rocket"></i>&nbsp;&nbsp; New Eden Church LMS
                         {% endblock navbar-content %}
@@ -47,7 +47,7 @@
     <!--footer-->
     <footer class="bg-dark text-center text-lg-start" id="footer" style="color: #fff;">
         <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-            Copy Rights &copy; {% now "Y" %} All rights reserved | Made with 
+            Copy Rights &copy; {% now "Y" %} <span id="allrights">All rights reserved </span> | Made with 
             <i class="text-danger fa-solid fa-user-plus blink_me" style="font-size: 15px;"></i>by
             <a href="#" target="_blank" {% block footer %} style="color: #0dcaf0; text-decoration: none;" {% endblock footer %}>ZINION</a>
         </div>
@@ -58,16 +58,16 @@
         <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel"><i class="fas fa-sign-out-alt"></i>&nbsp;&nbsp; Logout</h1>
+            <h1 class="modal-title text-small2" id="exampleModalLabel"><i class="fas fa-sign-out-alt"></i>&nbsp;&nbsp; Logout</h1>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body text-center">
                 <span class="text-danger"><i class="fas fa-sign-out-alt fa-3x mt-4"></i></span>
-                <div class="mt-4 mb-4 text-danger">Are you sure want to exit the system ?</div>
+                <div class="mt-4 mb-4 text-danger confirm">SURE WANT TO EXIT THE SYSTEM ?</div> 
             </div>
             <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancle</button>
-            <a href="{% url 'logout' %}" type="button" class="btn btn-outline-danger btn-sm">Logout</a>
+            <button type="button" class="btn btn-secondary" id="btn-cancel" data-bs-dismiss="modal">Cancel</button>
+            <a href="{% url 'logout' %}" type="button" id="btn-logout" class="btn btn-outline-danger btn-sm">Logout</a>
             </div>
         </div>
         </div>

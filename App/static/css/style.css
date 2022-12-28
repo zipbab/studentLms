@@ -40,6 +40,7 @@ body {
 
 .side-label {
     width: 80px;
+    font-size: 16px;
 
 }
 
@@ -67,6 +68,15 @@ body {
     transform: translate(-50% -50%);
     font-size: 22px;
 }
+
+#btn-enter {
+    width: 90px;
+}
+
+#title-login {
+    cursor: default;
+}
+
 
 /*---------------------------------------
 # Custom SweetAlert
@@ -103,3 +113,143 @@ body {
     color: #111;
     border: 1px solid #007bff
 }
+
+/**-----------------------------------
+# Responsive mode -Tablet 1024px
+-----------------------------------*/
+@media(max-width: 1024px) {
+    /** Table */
+    .table thead {
+        display: none;
+    }
+    .table, .table tbody, .table tr, .table td {
+        display: block;
+        width: 100%;
+    }
+    .table tr {
+        margin-bottom: 15px;
+        border: 1px solid #111;
+        border-radius: 5px;
+    }
+    .table td {
+        text-align: right;
+        padding-left: 35%;
+        position: relative;
+        border: 1px solid transparent;
+    }
+    .table td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 0;
+        width: 50%;
+        padding-left: 15px;
+        font-size: 13px;
+        font-weight: bold;
+        text-align: left;
+    }
+    .table > thead > tr:first-child {
+        display: none;
+        margin-top: 5px;
+    }
+    /** Responsive Border */ 
+    #responsive-border {
+        border: 1px solid #a9a9a9;
+    }
+    #top-table {
+        background-color: #6c757d;
+        color: #fff;
+        font-weight: bold;
+    }
+    /**--------------- End // Table ---------------  */
+    
+    /** Enable the verical scroll */
+    body {
+        overflow-y: visible;
+    }
+    /**  Add student button  */
+    #add-student {
+        font-size: 12px;
+    }
+    #btn-nav {
+        width: 75px;
+    }
+    /**  Welcome user   */
+    .welcome {
+        font-size: 14px;
+    }
+    #footer {
+        font-size: 12px;
+    }
+}
+
+/**-----------------------------------
+# Responsive mode - Smartphone 500px
+-----------------------------------*/
+@media(max-width: 500px) {
+    /**  Hide "Alrignt" on footer (only in this mode)  */
+    #allrights {
+        display: none;
+    }
+    #footer {
+        font-size: 11px;
+    }
+    .btn-actions {
+        width: 35px;
+        font-size: 12px;
+    }
+    #btn-nav {
+        width: 65px;
+        font-size: 12px;
+        margin-right: 15px;
+    }
+    #clock {
+        display: none;
+    }
+    #nav-content {
+        font-size: 15px;
+    }
+    #blink {
+        font-size: 12px;
+    }
+    #btn-enter {
+        width: 100%;
+        border-radius: 30px;
+    }
+    .text-small {
+        font-size: 12px;
+    }
+    #title-login {
+        cursor: default;
+        font-size: 13px;
+    }
+    .welcome {
+        font-size: 12px;
+    }
+    #add-student {
+        font-size: 11px;
+    }
+    #btn-delete, #btn-cancel, #btn-logout {
+        font-size: 12px;
+    }
+    .title-logout, #deleteModalLabel {
+        font-size: 14px;
+    }
+    #no-data {
+       font-size: 18px; 
+    }
+    #pagination, #first, #last, .confirm {
+        font-size: 12px;
+    }
+    #info {
+        font-size: 13px;
+    }
+    .side-label {
+        width: 65px;
+    }
+    #name, #phone, #email, #dateofbirth, #gender, #grade {
+        font-size: 12px;
+    }
+    #btn-add, #btn-back ,#btn-reset {
+        font-size: 12px;
+    }
+} 

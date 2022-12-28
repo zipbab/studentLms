@@ -36,10 +36,10 @@
 
     <div class="d-flex justify-content-between">
         <!-- 1) column add student -->
-        <a href="{% url 'add_student' %}" class="btn btn-outline-primary btn-sm"><i class="fa-sharp fa-solid fa-user-plus"></i>&nbsp;&nbsp; Add Student</a>
+        <a href="{% url 'add_student' %}" class="btn btn-outline-primary btn-sm" id="add-student"><i class="fa-sharp fa-solid fa-user-plus"></i>&nbsp;&nbsp; Add Student</a>
 
         <!-- 2) column Get Users -->
-        <span>
+        <span class="welcome">
             Welcome: <strong><span class="text-primary">{{ user.get_username }}</span></strong>
         </span>
 
@@ -69,20 +69,20 @@
             </thead>
             <!-- data from backend -->
             {% for student in students  %}
-            <tr id="chk_td">
-                <td>{{ student.name }}</td>
-                <td>{{ student.phone }}</td>
-                <td>{{ student.email }}</td>
-                <td>{{ student.dateofbirth }}</td>
-                <td>{{ student.gender }}</td>
-                <td>{{ student.grade }}</td>
-                <td>
-                    <a href="/student/{{ student.id }}" class="btn btn-primary" title="Edit Student">
+            <tr class="text-small" id="chk_td">
+                <td data-label="Name" id="top-table">{{ student.name }}</td>
+                <td data-label="Phone" id="responsive-border">{{ student.phone }}</td>
+                <td data-label="Email" id="responsive-border">{{ student.email }}</td>
+                <td data-label="Date of birth" id="responsive-border">{{ student.dateofbirth }}</td>
+                <td data-label="Gender" id="responsive-border">{{ student.gender }}</td>
+                <td data-label="Grade" id="responsive-border">{{ student.grade }}</td>
+                <td id="responsive-border">
+                    <a href="/student/{{ student.id }}" class="btn btn-primary btn-actions" title="Edit Student">
                         <i class="fas fa-pen"></i>
                     </a>
                 </td>
-                <td>
-                    <a class="btn btn-secondary" title="Delete Student" data-bs-toggle="modal" data-bs-target="#deleteModal{{ student.pk }}">
+                <td id="responsive-border">
+                    <a class="btn btn-secondary btn-actions" title="Delete Student" data-bs-toggle="modal" data-bs-target="#deleteModal{{ student.pk }}">
                         <i class="fas fa-trash-alt"></i>
                     </a>
                 </td>
@@ -100,13 +100,13 @@
                     <div class="modal-body text-center">
                         <div class="text-center text-danger"><i class="fas fa-times-circle fa-5x mb-4 mt-2"></i></div>
                         <div class="text-center text-danger">
-                            <span>Do u want to delete this student ?</span>
-                            <div class="text-dark mt-3 mb-2">Student: <strong>{{ student.name }}</strong></div>
+                            <span class="confirm">Do u want to delete this student ?</span>
+                            <div class="text-dark mt-3 mb-2 text-small">Student: <strong>{{ student.name }}</strong></div>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cancle</button>
-                        <a href="/delete_student/{{ student.id }}" type="button" class="btn btn-outline-danger btn-sm">Delete</a>
+                        <button type="button" class="btn btn-secondary btn-sm" id="btn-cancel" data-bs-dismiss="modal">Cancel</button>
+                        <a href="/delete_student/{{ student.id }}" type="button" id="btn-delete" class="btn btn-outline-danger btn-sm">Delete</a>
                     </div>
                 </div>
                 </div>
@@ -120,11 +120,11 @@
 
 
     <!-- Pagination-->
-    <nav class="mt-4" aria-label="Page navigation example">
+    <nav class="mt-4" aria-label="Page navigation example" id="pagination">
         {% if students.has_other_pages %}
         <ul class="pagination justify-content-left">
             {% if students.has_previous %}
-            <a href="?page=1" class="btn btn-outline-primary mb-4" style="width: 60px; border-radius: 1px; border: 1px solid #d3d3d3;">시작</a>
+            <a href="?page=1" class="btn btn-outline-primary mb-4" id="first" style="width: 60px; border-radius: 1px; border: 1px solid #d3d3d3;">시작</a>
             <li class="page-item"><a class="page-link" href="?page{{ students.previous_page_number }}"><i class="fas fa-angle-double-left"></i></a></li>
             {% else %}
             <li class="page-item disabled"></li>
@@ -140,7 +140,7 @@
 
             {% if students.has_next %}
             <li class="page-item"><a class="page-link" href="?page={{ students.next_page_number }}"><i class="fas fa-angle-double-left"></i></a></li>
-            <a href="?page={{ students.paginator.num_pages }}" class="btn btn-outline-primary mb-4" style="width: 60px; border-radius: 1px; border: 1px solid #d3d3d3; border-left: none;">끝</a>
+            <a href="?page={{ students.paginator.num_pages }}" class="btn btn-outline-primary mb-4" id="last" style="width: 60px; border-radius: 1px; border: 1px solid #d3d3d3; border-left: none;">끝</a>
             {% else %}
             <li class="page-item disabled"></li>
             {% endif %}
@@ -163,5 +163,5 @@
 
 
 </div> <!-- End // Container-->
-
+<br><br><br>
 {% endblock content %}
