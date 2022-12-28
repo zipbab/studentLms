@@ -1,0 +1,167 @@
+{% extends 'base.html' %}
+
+<!-- Titleon tab browser -->
+{% block title %} All Students  {% endblock title %}
+
+<!--Navbar content-->
+{% block navbar-content %}
+<i class="fa-solid fa-user-gear"></i>&nbsp;&nbsp; Student 
+{% endblock navbar-content %}
+
+   <!--시간-->
+   {% block time %}
+   <div class="col-sm">
+        <center>
+            <span style="color: #89cff0;" id="clock"></span>
+        </center>
+    </div>
+   {% endblock time %} 
+
+
+<!--button on navbar-->
+{% block navbar-btn %}
+<a class="btn btn-outline-danger border-light text-light btn-sm" id="btn-nav" data-bs-toggle="modal" data-bs-target="#exampleModal">Logout</a>
+{% endblock navbar-btn %}
+
+<!-- Footer Color -->
+{% block footer %} style="color: #89cff0; text-decoration: none;" {% endblock footer %}
+
+
+
+<!--Content Page-->
+{% block content %}
+<div class="container">
+
+    <br><br>
+
+    <div class="d-flex justify-content-between">
+        <!-- 1) column add student -->
+        <a href="{% url 'add_student' %}" class="btn btn-outline-primary btn-sm"><i class="fa-sharp fa-solid fa-user-plus"></i>&nbsp;&nbsp; Add Student</a>
+
+        <!-- 2) column Get Users -->
+        <span>
+            Welcome: <strong><span class="text-primary">{{ user.get_username }}</span></strong>
+        </span>
+
+    </div>
+
+    <form>
+        <div class="input-group input-group-sm mb-3 mt-4">
+            <input type="text" name="q" class="form-control" placeholder="Search For..." value="{{ request.GET.q }}">
+            <button class="btn btn-secondary"><i class="fa-solid fa-magnifying-glass-plus"></i>&nbsp;&nbsp; </button>
+            <a href="{% url 'backend' %}" class="btn btn-dark" style="margin-left: 2px;"><i class="fas fa-sync-alt"></i></a>
+        </div>
+
+    </form>
+
+    <center>
+        <table class="table table-bordered table-sm mt-4" style="text-align: center; font-size: 14px;">
+            <thead class="table-secondary">
+                <tr>
+                    <th style="width: 19%;">Name</th>
+                    <th style="width: 15%;">Phone</th>
+                    <th style="width: 21%;">Email</th>
+                    <th style="width: 21%;">Date of Birth</th>
+                    <th style="width: 7%;">Gender</th>
+                    <th style="width: 7%;">Grade</th>
+                    <th style="width: 10%;" colspan="2" >Action</th>
+                </tr>
+            </thead>
+            <!-- data from backend -->
+            {% for student in students  %}
+            <tr id="chk_td">
+                <td>{{ student.name }}</td>
+                <td>{{ student.phone }}</td>
+                <td>{{ student.email }}</td>
+                <td>{{ student.dateofbirth }}</td>
+                <td>{{ student.gender }}</td>
+                <td>{{ student.grade }}</td>
+                <td>
+                    <a href="/student/{{ student.id }}" class="btn btn-primary" title="Edit Student">
+                        <i class="fas fa-pen"></i>
+                    </a>
+                </td>
+                <td>
+                    <a class="btn btn-secondary" title="Delete Student" data-bs-toggle="modal" data-bs-target="#deleteModal{{ student.pk }}">
+                        <i class="fas fa-trash-alt"></i>
+                    </a>
+                </td>
+            </tr>
+
+            <!-- Logout Confirmation -->
+            <!-- Modal -->
+            <div class="modal fade" id="deleteModal{{ student.pk }}" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="deleteModalLabel"><i class="fas fa-trash-alt"></i>&nbsp;&nbsp; Delete Student</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body text-center">
+                        <div class="text-center text-danger"><i class="fas fa-times-circle fa-5x mb-4 mt-2"></i></div>
+                        <div class="text-center text-danger">
+                            <span>Do u want to delete this student ?</span>
+                            <div class="text-dark mt-3 mb-2">Student: <strong>{{ student.name }}</strong></div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cancle</button>
+                        <a href="/delete_student/{{ student.id }}" type="button" class="btn btn-outline-danger btn-sm">Delete</a>
+                    </div>
+                </div>
+                </div>
+            </div>
+
+            {% endfor %}
+        </table>
+    </center>
+
+
+
+
+    <!-- Pagination-->
+    <nav class="mt-4" aria-label="Page navigation example">
+        {% if students.has_other_pages %}
+        <ul class="pagination justify-content-left">
+            {% if students.has_previous %}
+            <a href="?page=1" class="btn btn-outline-primary mb-4" style="width: 60px; border-radius: 1px; border: 1px solid #d3d3d3;">시작</a>
+            <li class="page-item"><a class="page-link" href="?page{{ students.previous_page_number }}"><i class="fas fa-angle-double-left"></i></a></li>
+            {% else %}
+            <li class="page-item disabled"></li>
+            {% endif %}
+
+            {% for i in students.paginator.page_range %}
+            {% if students.number == i %}
+            <li class="page-item active"><span class="page-link">{{ i }}<span class="sr-only"></span></span></li>
+            {% else %}
+            <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+            {% endif %}
+            {% endfor %}
+
+            {% if students.has_next %}
+            <li class="page-item"><a class="page-link" href="?page={{ students.next_page_number }}"><i class="fas fa-angle-double-left"></i></a></li>
+            <a href="?page={{ students.paginator.num_pages }}" class="btn btn-outline-primary mb-4" style="width: 60px; border-radius: 1px; border: 1px solid #d3d3d3; border-left: none;">끝</a>
+            {% else %}
+            <li class="page-item disabled"></li>
+            {% endif %}
+        </ul>
+        {% endif %}
+    </nav>
+    <!--  message from backend-->
+    {% for message in messages %}
+        {% if message.tags == 'success'  %}
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script>
+            let m = "{{ message }}";
+            swal("Perfect !", m, "success");
+        </script>
+        {% endif %}
+    {% endfor %}
+ 
+    <!-- If no student, show the message -->    
+    <span class="text-danger" id="no-data"> </span>
+
+
+</div> <!-- End // Container-->
+
+{% endblock content %}

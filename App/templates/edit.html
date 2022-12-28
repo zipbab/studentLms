@@ -1,0 +1,39 @@
+{% extends 'add.html'  %}
+
+<!-- Titleon tab browser -->
+{% block title %} Student  {% endblock title %}
+
+{% block navbar-content %}
+<i class="fa-sharp fa-solid fa-user-edit"></i>&nbsp;&nbsp; {{ student.name }}
+{% endblock navbar-content %}
+
+<!-- Title in card-->
+{% block card-title %} Edit the Information  {% endblock card-title %}
+ 
+<!-- extends Edit buttion -->
+{% block Btn-content %}  <i class="fas fa-hdd"></i>&nbsp;&nbsp; Save {% endblock Btn-content %}
+
+<!-- Reset Button denied here -->
+{% block Btn-reset %} 
+    <button type="reset" class="btn btn-secondary btn-sm"><i class="fas fa-sync-alt"></i>&nbsp; Reset</button>
+{% endblock Btn-reset %}
+
+<!-- Form Action -->
+{% block Action %} action="/edit_student" {% endblock Action %} 
+
+<!-- extends All <inputs> add.html -->
+{% block Value-name  %} value="{{ student.name }}"  {% endblock Value-name  %} 
+{% block Value-phone  %} value="{{ student.phone }}"  {% endblock Value-phone  %}
+{% block Value-email  %} value="{{ student.email }}"  {% endblock Value-email  %}
+{% block Value-birth  %} value="{{ student.dateofbirth }}"  {% endblock Value-birth  %}
+
+{% block option1 %} <option style="background-color:#d3d3d3; color: #007bff; font-weight: bold;">{{ student.gender }}</option> {% endblock option1 %}
+{% block Value-gender %} value="{{ student.gender }}" {% endblock Value-gender %}
+ 
+{% block option2 %} <option style="background-color:#d3d3d3; color: #007bff; font-weight: bold;">{{ student.grade }}</option> {% endblock option2 %}
+{% block Value-grade %}  value="{{ student.grade }}"  {% endblock Value-grade %}
+
+{% block Value-note %} {{ student.note }} {% endblock Value-note %} 
+
+ <!-- Input ID passed here -->
+ {% block Id-hidden %} <input type="hidden" name="id" value="{{ student.id }}">  {% endblock Id-hidden %}

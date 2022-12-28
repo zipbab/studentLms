@@ -1,0 +1,105 @@
+/*------------------------------
+# Start configuration
+------------------------------*/
+html,
+body {
+    height: 100%;
+    margin: 0;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+/*------------------------------
+# Navbar
+------------------------------*/
+
+#btn-nav {
+    width: 90px;
+    float: right;
+    margin-right: 25px;
+}
+
+/*------------------------------
+# Footer
+------------------------------*/
+
+.wrapper {
+    min-height: 100%;
+    margin-bottom: -50px;
+
+}
+#footer,
+.push {
+    height: 50px;
+    font-size: 13px;
+}
+
+/*------------------------------
+# Student (add.html)
+------------------------------*/
+
+.side-label {
+    width: 80px;
+
+}
+
+/*---------------------------------------
+# Backend  | Student List (backend.html)
+----------------------------------------*/
+
+#no-data{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50% -50%);
+    font-size: 22px;
+}
+
+/*---------------------------------------
+# Login
+----------------------------------------*/
+#blink{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50% -50%);
+    font-size: 22px;
+}
+
+/*---------------------------------------
+# Custom SweetAlert
+----------------------------------------*/
+/* All text 100% centered */
+.swal-text{
+    text-align: center;
+}
+/* Icon settings */
+.swal-icon--success:before,
+.swal-icon--success:after,
+.swal-icon--success__hide-corners {
+    background-color: none !important;
+}
+.swal-icon--success { /*  Border of the ring*/
+    border-color: #007bff !important;
+}
+.swal-icon--success__line { /*  Animation*/
+    background-color: #007bff;
+}
+/* Button settings */
+.swal-button {
+    padding: 7px 19px;
+    border-radius: 5px;
+    background-color: #007bff;
+    font-size: 12px;
+    border: 1px solid #007bff;
+}
+.swal-button:focus { /* Remove the sliver border of the buttion  */
+    box-shadow: none;
+}
+.swal-button:not([disabled]):hover { /* hover effect on button */
+    background-color: transparent;
+    color: #111;
+    border: 1px solid #007bff
+}

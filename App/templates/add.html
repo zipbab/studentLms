@@ -1,0 +1,110 @@
+ {% extends 'base.html' %}
+
+<!-- Titleon tab browser -->
+{% block title %} Add Student  {% endblock title %}
+
+ {% block navbar-content %}
+<i class="fa-sharp fa-solid fa-user-plus"></i>&nbsp;&nbsp; Add Student
+{% endblock navbar-content %}
+
+   <!-- 시간-->
+   {% block time %}
+   <div class="col-sm">
+        <center>
+            <span style="color: #89cff0;" id="clock"></span>
+        </center>
+    </div>
+   {% endblock time %} 
+
+ 
+<!--button on navbar-->
+{% block navbar-btn %}
+<a class="btn btn-outline-danger border-light text-light btn-sm" id="btn-nav" data-bs-toggle="modal" data-bs-target="#exampleModal">Logout</a>
+{% endblock navbar-btn %}
+
+<!-- Footer Color -->
+{% block footer %} style="color: #89cff0; text-decoration: none;" {% endblock footer %}
+
+
+<!-- Page content-->
+ {% block content %}
+  <div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card card-body border-dark text-primary mt-5">
+                <span class="text-center">{% block card-title %}<span class="text-primary"> FILL OUT THE FORM BELOW </span>{% endblock card-title %}</span>
+            </div>
+
+            <!-- Form -->
+            <form {% block Action %} action="/add_student" {% endblock Action %} method="POST" enctype="multipart/form-data" class="card p-3 border-dark mt-3">
+                {% csrf_token %}
+
+                <div class="input-group input-group-sm mb-3">
+                    <span class="input-group-text side-label">Name</span>
+                    <input type="text" class="form-control" name="name" id="name" maxlength="40" placeholder="Student Name" required {% block Value-name %} {% endblock Value-name %}>
+                </div>
+                
+                <div class="input-group input-group-sm mb-3">
+                    <span class="input-group-text side-label">Phone</span>
+                    <input type="text" class="form-control" name="phone"  id="phone"  maxlength="20"placeholder="Student Phone" required {% block Value-phone %} {% endblock Value-phone %}>
+                </div>
+
+                <div class="input-group input-group-sm mb-3">
+                    <span class="input-group-text side-label">Email</span>
+                    <input type="text" class="form-control" name="email"  id="email" maxlength="30" placeholder="Student Email" required {% block Value-email %} {% endblock Value-email %}>
+                </div>
+                
+                <div class="input-group input-group-sm mb-3">
+                    <span class="input-group-text side-label">Birth</span>
+                    <input type="text" class="form-control" name="dateofbirth" maxlength="11"  id="dateofbirth" placeholder="YYYY-MM-DD" required {% block Value-birth %} {% endblock Value-birth %}>
+                </div>
+
+                <div class="input-group input-group-sm mb-3">
+                    <label class="input-group-text side-label">Gender</label>
+                    <select class="form-select" name="gender" id="gender" required {% block Value-gender %} {% endblock Value-gender %}>
+                        {% block option1 %}
+                        <option value="" hidden>Select the Gender</option>
+                        {% endblock option1 %}
+                        <option disabled></option>
+                        <option>남</option>
+                        <option>여</option>
+                    </select>
+                </div>
+                
+                <div class="input-group input-group-sm mb-3">
+                    <label class="input-group-text side-label">Grade</label>
+                    <select class="form-select" name="grade" id="grade" required {% block Value-grade %} {% endblock Value-grade %}>
+                        {% block option2 %}
+                        <option value="" hidden>Select the grade</option>
+                        {% endblock option2 %}
+                        <option disabled></option>
+                        <option>초</option>
+                        <option>중</option>
+                        <option>고</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <textarea class="form-control" name="note" rows="5" maxlength="1000" placeholder="Description is optional" >{% block Value-note %} {% endblock Value-note %}</textarea>
+                </div>
+
+                <div class="d-grid gap-2 mt-3">
+                    <button type="submit" class="btn btn-primary btn-sm" id="btn-add">
+                      {% block Btn-content %}  <i class="fa-sharp fa-solid fa-person-circle-plus"></i>&nbsp;&nbsp; Add {% endblock Btn-content %}
+                    </button>
+
+                    <!-- Reset Button denied here -->
+                    {% block Btn-reset %} {% endblock Btn-reset %}
+                    
+                    <a href="{% url 'backend' %}" class="btn btn-dark btn-sm"><i class="fa-sharp fa-solid fa-arrow-rotate-left"></i>&nbsp;&nbsp; BACK</a>
+                </div>
+
+                <!-- Input ID denied here -->
+                {% block Id-hidden %}   {% endblock Id-hidden %}
+                
+            </form>
+        </div>
+    </div>
+
+  </div>
+ {% endblock content %}
